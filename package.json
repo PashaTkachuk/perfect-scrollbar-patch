@@ -1,6 +1,6 @@
 {
-  "name": "perfect-scrollbar",
-  "version": "1.5.5",
+  "name": "perfect-scrollbar-patch",
+  "version": "1.5.6",
   "description": "Minimalistic but perfect custom scrollbar plugin",
   "author": "Hyunje Jun <me@noraesae.net>",
   "keywords": [
@@ -8,13 +8,13 @@
     "scroll",
     "scrollbar"
   ],
-  "homepage": "https://perfectscrollbar.com/",
+  "homepage": "https://github.com/PashaTkachuk/perfect-scrollbar-patch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdbootstrap/perfect-scrollbar"
+    "url": "https://github.com/PashaTkachuk/perfect-scrollbar-patch"
   },
   "bugs": {
-    "url": "https://github.com/mdbootstrap/perfect-scrollbar/issues"
+    "url": "https://github.com/PashaTkachuk/perfect-scrollbar-patch/issues"
   },
   "jspm": {
     "main": "dist/perfect-scrollbar.common.js",
@@ -31,12 +31,14 @@
     "types"
   ],
   "devDependencies": {
-    "chokidar-cli": "^2.1.0",
-    "prettier": "^1.19.1",
-    "rollup": "^1.27.8",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-babel-minify": "^9.1.1",
-    "rollup-plugin-buble": "^0.19.8"
+    "@types/estree": "0.0.40",
+    "@types/node": "7.10.1",
+    "chokidar-cli": "2.1.0",
+    "prettier": "1.19.1",
+    "rollup": "1.27.8",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-babel-minify": "9.1.1",
+    "rollup-plugin-buble": "0.19.8"
   },
   "scripts": {
     "test": "npm run format:lint && npm run build",

@@ -142,7 +142,9 @@ export default function(i) {
     updateGeometry(i);
 
     if (shouldPreventDefault(deltaX, deltaY)) {
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     }
   });
 }

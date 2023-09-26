@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.6] - 2023-09-26
+
+### Notable changes:
+- Fix for "[Intervention] Ignored attempt to cancel a touchmove event with cancelable=false, for example because scrolling is in progress and cannot be interrupted." error
+- Explicitly set passive: false. Fix for "Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive" warning.
+
 ## [1.5.0] - 2020-01-16
 
 ### Notable changes:

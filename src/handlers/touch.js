@@ -166,7 +166,9 @@ export default function(i) {
       }
 
       if (shouldPrevent(differenceX, differenceY)) {
-        e.preventDefault();
+        if (typeof e.cancelable !== "boolean" || e.cancelable) {
+          e.preventDefault();
+        }
       }
     }
   }

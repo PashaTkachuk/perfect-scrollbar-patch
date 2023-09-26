@@ -63,7 +63,9 @@ function bindMouseScrollHandler(
 
     e.stopPropagation();
     if (e.type.startsWith('touch') && e.changedTouches.length > 1) {
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     }
   }
 
@@ -85,7 +87,9 @@ function bindMouseScrollHandler(
     if (!touchMode) {
       i.event.bind(i.ownerDocument, 'mousemove', mouseMoveHandler);
       i.event.once(i.ownerDocument, 'mouseup', mouseUpHandler);
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     } else {
       i.event.bind(i.ownerDocument, 'touchmove', mouseMoveHandler);
     }

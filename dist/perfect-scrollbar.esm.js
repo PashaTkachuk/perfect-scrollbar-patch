@@ -1,6 +1,6 @@
 /*!
- * perfect-scrollbar v1.5.3
- * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
+ * perfect-scrollbar v1.5.6
+ * Copyright 2023 Hyunje Jun, MDBootstrap and Contributors
  * Licensed under MIT
  */
 
@@ -111,7 +111,7 @@ EventElement.prototype.bind = function bind (eventName, handler) {
     this.handlers[eventName] = [];
   }
   this.handlers[eventName].push(handler);
-  this.element.addEventListener(eventName, handler, false);
+  this.element.addEventListener(eventName, handler, { passive: false });
 };
 
 EventElement.prototype.unbind = function unbind (eventName, target) {
@@ -121,7 +121,7 @@ EventElement.prototype.unbind = function unbind (eventName, target) {
     if (target && handler !== target) {
       return true;
     }
-    this$1.element.removeEventListener(eventName, handler, false);
+    this$1.element.removeEventListener(eventName, handler, { passive: false });
     return false;
   });
 };
@@ -561,7 +561,9 @@ function bindMouseScrollHandler(
 
     e.stopPropagation();
     if (e.type.startsWith('touch') && e.changedTouches.length > 1) {
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     }
   }
 
@@ -583,7 +585,9 @@ function bindMouseScrollHandler(
     if (!touchMode) {
       i.event.bind(i.ownerDocument, 'mousemove', mouseMoveHandler);
       i.event.once(i.ownerDocument, 'mouseup', mouseUpHandler);
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     } else {
       i.event.bind(i.ownerDocument, 'touchmove', mouseMoveHandler);
     }
@@ -740,7 +744,9 @@ function keyboard(i) {
     updateGeometry(i);
 
     if (shouldPreventDefault(deltaX, deltaY)) {
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.preventDefault();
+      }
     }
   });
 }
@@ -887,8 +893,10 @@ function wheel(i) {
 
     shouldPrevent = shouldPrevent || shouldPreventDefault(deltaX, deltaY);
     if (shouldPrevent && !e.ctrlKey) {
-      e.stopPropagation();
-      e.preventDefault();
+      if (typeof e.cancelable !== "boolean" || e.cancelable) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
     }
   }
 
@@ -1062,7 +1070,9 @@ function touch(i) {
       }
 
       if (shouldPrevent(differenceX, differenceY)) {
-        e.preventDefault();
+        if (typeof e.cancelable !== "boolean" || e.cancelable) {
+          e.preventDefault();
+        }
       }
     }
   }
